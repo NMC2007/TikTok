@@ -1,0 +1,88 @@
+.wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.6rem;
+    font-weight: 700;
+    min-width: 100px;
+    padding: 9px 16px;
+    border-radius: 4px;
+    color: var(--default-text-color);
+    background-color: transparent;
+    border: 1px solid transparent;
+    user-select: none;
+
+    cursor: pointer;
+
+    // nếu có thêm nút đứng cạnh
+    + .wrapper {
+        margin-left: 8px;
+    }
+
+    &.disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+}
+
+// nếu icon bên trái thì title đẩy sang trái
+// nếu icon ở bên phải thì icon đẩy sang trái
+.icon + .title,
+.title + .icon {
+    margin-left: 6px;
+}
+
+.icon {
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+}
+
+// button type
+.rounded {
+    border-radius: 999px;
+    box-shadow: 0 2px 6px rgba(190, 190, 190, 0.193);
+    border: 1px solid rgba(155, 167, 247, 0.384);
+
+    &:hover {
+        border: 1px solid rgba(155, 167, 247, 0.303);
+        background-color: rgba(46, 46, 46, 0.422);
+    }
+}
+
+.primary {
+    background-color: var(--primary);
+
+    &:hover {
+        background-color: var(--primary);
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55;
+    }
+}
+
+.outline {
+    border: 1px solid var(--primary);
+    color: var(--primary);
+
+    &:hover {
+        border: 1px solid var(--primary);
+        background-color: rgba(254, 44, 85, 0.06);
+    }
+}
+
+.text {
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+// button size
+.small {
+    min-width: 88px;
+    padding: 4px 16px;
+}
+
+.large {
+    padding: 14px 16px;
+    min-width: 140px;
+}

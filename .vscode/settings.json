@@ -1,0 +1,6 @@
+// file này chỉ định khi lưu file code thì vs code sẽ tự động lấy
+// formatter của prettier vừa được cài
+{
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
