@@ -34,9 +34,10 @@
 }
 
 .icon {
-    display: inline-block;
     width: 30px;
-    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 // button type
