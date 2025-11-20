@@ -8,8 +8,11 @@ import {
     faMagnifyingGlass,
     faEllipsisVertical,
     faEarthAsia,
+    faCloudArrowUp,
 } from '@fortawesome/free-solid-svg-icons';
-import Tippy from '@tippyjs/react/headless';
+import HeadlessTippy from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 import style from './Header.module.scss';
 import images from '~/assets/images';
@@ -79,6 +82,9 @@ const MENU_ITEM = [
 const cx = classNames.bind(style);
 
 function Header() {
+    // khi có currentUse viết thêm logic tăng item menu
+    const currentUse = true;
+
     const [searchResult, setSearchResult] = useState([]);
     const [searchContent, setSearchContent] = useState('');
 
@@ -118,7 +124,7 @@ function Header() {
                 </div>
 
                 {/* search */}
-                <Tippy
+                <HeadlessTippy
                     interactive
                     visible={searchResult.length > 0}
                     render={(attrs) => (
@@ -157,17 +163,37 @@ function Header() {
                             <FontAwesomeIcon icon={faMagnifyingGlass} />
                         </button>
                     </div>
-                </Tippy>
+                </HeadlessTippy>
 
                 {/* actions */}
                 <div className={cx('actions')}>
-                    <Button text>Upload</Button>
-                    <Button primary>Log in</Button>
+                    {currentUse ? (
+                        <>
+                            <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <FontAwesomeIcon icon={faCloudArrowUp} />
+                                </button>
+                            </Tippy>
+                        </>
+                    ) : (
+                        <>
+                            <Button text>Upload</Button>
+                            <Button primary>Log in</Button>
+                        </>
+                    )}
 
                     <Menu items={MENU_ITEM} onChange={handleMenuChange}>
-                        <button className={cx('more-btn')}>
-                            <FontAwesomeIcon icon={faEllipsisVertical} />
-                        </button>
+                        {currentUse ? (
+                            <img
+                                className={cx('user-avatar')}
+                                src="https://vnclass.edu.vn/wp-content/uploads/2025/02/avatar-doi-cute-meo%E2%80%8B-23.jpg"
+                                alt="Nguyen Manh Cuong"
+                            />
+                        ) : (
+                            <button className={cx('more-btn')}>
+                                <FontAwesomeIcon icon={faEllipsisVertical} />
+                            </button>
+                        )}
                     </Menu>
                 </div>
             </div>

@@ -127,3 +127,20 @@
     margin-left: 16px;
     cursor: pointer;
 }
+
+.action-btn {
+    font-size: 2.4rem;
+    padding: 4px 10px;
+    color: var(--default-text-color);
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    margin-left: 12px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
