@@ -9,6 +9,10 @@ import {
     faEllipsisVertical,
     faEarthAsia,
     faCloudArrowUp,
+    faUser,
+    faCoins,
+    faGear,
+    faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless';
 import Tippy from '@tippyjs/react';
@@ -82,8 +86,7 @@ const MENU_ITEM = [
 const cx = classNames.bind(style);
 
 function Header() {
-    // khi có currentUse viết thêm logic tăng item menu
-    const currentUse = true;
+    const currentUser = true;
 
     const [searchResult, setSearchResult] = useState([]);
     const [searchContent, setSearchContent] = useState('');
@@ -114,6 +117,32 @@ function Header() {
             default:
         }
     };
+
+    // menu khi có use đăng nhập
+    const userMenu = [
+        {
+            icon: <FontAwesomeIcon icon={faUser} />,
+            title: 'View profile',
+            to: '@mn_nmc2812',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faCoins} />,
+            title: 'Get coins',
+            to: '/coin',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faGear} />,
+            title: 'Setting',
+            to: '/seting',
+        },
+        ...MENU_ITEM,
+        {
+            icon: <FontAwesomeIcon icon={faSignOut} />,
+            title: 'Log out',
+            to: '/logout',
+            separate: true,
+        },
+    ];
 
     return (
         <header className={cx('wrapper')}>
@@ -167,7 +196,7 @@ function Header() {
 
                 {/* actions */}
                 <div className={cx('actions')}>
-                    {currentUse ? (
+                    {currentUser ? (
                         <>
                             <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
                                 <button className={cx('action-btn')}>
@@ -182,8 +211,8 @@ function Header() {
                         </>
                     )}
 
-                    <Menu items={MENU_ITEM} onChange={handleMenuChange}>
-                        {currentUse ? (
+                    <Menu items={currentUser ? userMenu : MENU_ITEM} onChange={handleMenuChange}>
+                        {currentUser ? (
                             <img
                                 className={cx('user-avatar')}
                                 src="https://vnclass.edu.vn/wp-content/uploads/2025/02/avatar-doi-cute-meo%E2%80%8B-23.jpg"

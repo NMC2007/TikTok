@@ -19,6 +19,9 @@
     padding: 11px 18px;
     line-height: 1.9rem;
 
+    &.separate {
+        border-top: 1px solid rgba(205, 210, 255, 0.236);
+    }
     &:hover {
         background-color: rgba(177, 189, 255, 0.03);
     }
