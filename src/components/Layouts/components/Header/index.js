@@ -8,7 +8,6 @@ import {
     faMagnifyingGlass,
     faEllipsisVertical,
     faEarthAsia,
-    faCloudArrowUp,
     faUser,
     faCoins,
     faGear,
@@ -21,9 +20,11 @@ import 'tippy.js/dist/tippy.css';
 import style from './Header.module.scss';
 import images from '~/assets/images';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
+import { UploadIcon, MessageIcon, InboxIcon } from '~/components/Icon';
 import AccountsItem from '~/components/AccountsItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
+import Image from '~/components/Image';
 
 /**
  * thư viện này giúp ta dùng css module nhưng
@@ -198,9 +199,19 @@ function Header() {
                 <div className={cx('actions')}>
                     {currentUser ? (
                         <>
+                            <Tippy content="Upload video" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <UploadIcon />
+                                </button>
+                            </Tippy>
                             <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faCloudArrowUp} />
+                                    <MessageIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy content="Upload video" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <InboxIcon />
                                 </button>
                             </Tippy>
                         </>
@@ -213,10 +224,11 @@ function Header() {
 
                     <Menu items={currentUser ? userMenu : MENU_ITEM} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img
+                            <Image
                                 className={cx('user-avatar')}
                                 src="https://vnclass.edu.vn/wp-content/uploads/2025/02/avatar-doi-cute-meo%E2%80%8B-23.jpg"
                                 alt="Nguyen Manh Cuong"
+                                fallback=""
                             />
                         ) : (
                             <button className={cx('more-btn')}>
