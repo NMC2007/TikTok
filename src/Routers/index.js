@@ -10,7 +10,8 @@ import Search from '~/pages/Search';
 const publicRoutes = [
     { path: '/', element: Home },
     { path: '/following', element: Following },
-    { path: '/profile', element: Profile },
+    // :nickname là đối tượng không cố định tuỳ vào to
+    { path: '/profile/:nickname', element: Profile },
     { path: '/upload', element: Upload, layout: HeaderOnly },
     { path: '/search', element: Search, layout: null },
 ];

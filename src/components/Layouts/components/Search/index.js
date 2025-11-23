@@ -8,33 +8,13 @@ import HeadlessTippy from '@tippyjs/react/headless';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountsItem from '~/components/AccountsItem';
 
-const FakeAPI = [
-    {
-        src: 'https://vnclass.edu.vn/wp-content/uploads/2025/02/avatar-doi-cute-meo%E2%80%8B-23.jpg',
-        name: 'Nguyễn Mạnh Cường',
-        usename: 'mn_nmc.',
-        check: true,
-    },
-    {
-        src: 'https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/avatar_meo_0_994f91d53c.jpg',
-        name: 'Nguyên Văn A',
-        usename: 'mn.VA',
-        check: true,
-    },
-    {
-        src: 'https://cdn2.fptshop.com.vn/unsafe/800x0/avatar_meo_4_57f5ca33f7.jpg',
-        name: 'Nguyên Văn B',
-        usename: 'NVB_02',
-        check: false,
-    },
-];
-
 const cx = classNames.bind(style);
 
 function Search() {
     const [searchResult, setSearchResult] = useState([]);
     const [searchContent, setSearchContent] = useState('');
     const [showResult, setShowResult] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     const inputRef = useRef();
 
@@ -46,12 +26,22 @@ function Search() {
          * trị tức khi người dùng nhập dữ liệu vào thì mới call
          * nên kiểm tra nếu searchContent là cuỗi rỗng thì return luôn
          */
-        if (!searchContent.trim()) return;
+        if (!searchContent.trim()) {
+            setSearchResult([]);
+            return;
+        }
 
-        // fake call API
-        setTimeout(() => {
-            setSearchResult(FakeAPI);
-        }, 1000);
+        setLoading(true);
+
+        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchContent)}&type=less`)
+            .then((rest) => rest.json())
+            .then((rest) => {
+                setSearchResult(rest.data);
+                setLoading(false);
+            })
+            .catch(() => {
+                setLoading(false);
+            });
     }, [searchContent]);
 
     const handleHideResult = () => {
@@ -68,8 +58,8 @@ function Search() {
                         <h4 className={cx('search-title')}>Accounts</h4>
 
                         {searchResult &&
-                            searchResult.map((Result, index) => {
-                                return <AccountsItem key={index} result={Result} />;
+                            searchResult.map((Result) => {
+                                return <AccountsItem key={Result.id} data={Result} />;
                             })}
                     </PopperWrapper>
                 </div>
@@ -89,7 +79,8 @@ function Search() {
                 />
 
                 <div className={cx('btn-loading-clear')}>
-                    {!!searchContent && (
+                    {/* có searchContent và KHÔNG có loading thì mới hiện dấu x */}
+                    {!!searchContent && !loading && (
                         <button
                             className={cx('clear')}
                             onClick={() => {
@@ -101,7 +92,7 @@ function Search() {
                         </button>
                     )}
 
-                    {/* <FontAwesomeIcon className={cx('loading')} icon={faSpinner} /> */}
+                    {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
                 </div>
 
                 <button className={cx('search-btn')}>
