@@ -34,6 +34,7 @@ const cx = classNames.bind(style);
 function Search() {
     const [searchResult, setSearchResult] = useState([]);
     const [searchContent, setSearchContent] = useState('');
+    const [showResult, setShowResult] = useState(true);
 
     const inputRef = useRef();
 
@@ -53,10 +54,14 @@ function Search() {
         }, 1000);
     }, [searchContent]);
 
+    const handleHideResult = () => {
+        setShowResult(false);
+    };
+
     return (
         <HeadlessTippy
             interactive
-            visible={searchResult.length > 0}
+            visible={showResult && searchResult.length > 0}
             render={(attrs) => (
                 <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                     <PopperWrapper>
@@ -69,6 +74,7 @@ function Search() {
                     </PopperWrapper>
                 </div>
             )}
+            onClickOutside={handleHideResult}
         >
             <div className={cx('search')}>
                 <input
@@ -77,6 +83,9 @@ function Search() {
                     spellCheck={false}
                     value={searchContent}
                     onChange={(e) => setSearchContent(e.target.value)}
+                    onFocus={() => {
+                        setShowResult(true);
+                    }}
                 />
 
                 <div className={cx('btn-loading-clear')}>
