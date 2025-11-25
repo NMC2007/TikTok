@@ -55,8 +55,8 @@ function Search() {
                 },
             })
             .then((rest) => {
-                console.log(rest.data);
-                // setSearchResult(rest.data);
+                console.log(rest.data.data);
+                setSearchResult(rest.data.data);
                 setLoading(false);
             })
             .catch(() => {
