@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSpinner, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
@@ -45,10 +46,17 @@ function Search() {
 
         setLoading(true);
 
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounce)}&type=less`)
-            .then((rest) => rest.json())
+        // sửa fetch thành thư viện axios.get
+        axios
+            .get(`https://tiktok.fullstack.edu.vn/api/users/search`, {
+                params: {
+                    q: debounce,
+                    type: 'less',
+                },
+            })
             .then((rest) => {
-                setSearchResult(rest.data);
+                console.log(rest.data);
+                // setSearchResult(rest.data);
                 setLoading(false);
             })
             .catch(() => {
