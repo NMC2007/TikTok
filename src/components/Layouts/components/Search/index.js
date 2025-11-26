@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSpinner, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
 import HeadlessTippy from '@tippyjs/react/headless';
 
+import * as searchServices from '~/apiServices/searchServices';
 import { useDebounce } from '~/hooks';
 import style from './Search.modue.scss';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
@@ -31,7 +31,6 @@ function Search() {
 
     const inputRef = useRef();
 
-    // fake API
     useEffect(() => {
         /**
          * do lần đầu được mounted thì useEffect vẫn chạy
@@ -44,24 +43,15 @@ function Search() {
             return;
         }
 
-        setLoading(true);
+        const fetchAPI = async () => {
+            setLoading(true);
 
-        // sửa fetch thành thư viện axios.get
-        axios
-            .get(`https://tiktok.fullstack.edu.vn/api/users/search`, {
-                params: {
-                    q: debounce,
-                    type: 'less',
-                },
-            })
-            .then((rest) => {
-                console.log(rest.data.data);
-                setSearchResult(rest.data.data);
-                setLoading(false);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
+            const result = await searchServices.search(debounce);
+            setSearchResult(result);
+
+            setLoading(false);
+        };
+        fetchAPI();
     }, [debounce]);
 
     const handleHideResult = () => {
