@@ -2,13 +2,14 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleQuestion, faKeyboard } from '@fortawesome/free-regular-svg-icons';
 import { faEllipsisVertical, faEarthAsia, faUser, faCoins, faGear, faSignOut } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
+import routes from '~/config/routes';
 import style from './Header.module.scss';
 import images from '~/assets/images';
 import { UploadIcon, MessageIcon, InboxIcon } from '~/components/Icon';
-// import AccountsItem from '~/components/AccountsItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
 import Image from '~/components/Image';
@@ -91,9 +92,9 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 {/* logo */}
-                <div className={cx('Logo')}>
+                <Link to={routes.home} className={cx('Logo-link')}>
                     <img src={images.logo} alt="TikTok"></img>
-                </div>
+                </Link>
 
                 {/* search */}
                 <Search />
