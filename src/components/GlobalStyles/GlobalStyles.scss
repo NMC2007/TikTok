@@ -8,6 +8,7 @@
     --default-layout-width: 1150px;
     --default-layout-horizontal-spacer: 24px;
     --default-text-color: #fff;
+    --default-backGrount: #000000;
 }
 
 * {
@@ -29,7 +30,7 @@ body {
     font-variation-settings: 'wdth' 100;
     font-size: 1.6rem;
     text-rendering: optimizeLegibility;
-    background-color: black;
+    background-color: var(--default-backGrount);
     color: var(--default-text-color);
 }
 

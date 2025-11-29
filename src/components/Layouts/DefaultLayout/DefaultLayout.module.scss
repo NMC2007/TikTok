@@ -10,10 +10,11 @@
     display: flex;
     justify-content: center;
     padding: 0 var(--default-layout-horizontal-spacer);
+    margin-top: var(--default-layout-header-height, 60);
     // border: 1px solid red;
 }
 
 .content {
     flex: 1;
-    min-height: 1000px;
+    // min-height: 1000px;
 }
