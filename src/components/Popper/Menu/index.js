@@ -12,7 +12,7 @@ const cx = classNames.bind(style);
 
 const defaultFun = () => {};
 
-function Menu({ children, items = [], hideOnClick = false, onChange = defaultFun }) {
+function Menu({ children, items = [], hideOnClick = false, onChange = defaultFun}) {
     // mặc định sẽ lấy data đầu tiên là mục đầu tiên của menu
     const [history, setHistory] = useState([{ data: items }]);
     const currentMenu = history[history.length - 1];
