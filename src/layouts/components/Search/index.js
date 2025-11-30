@@ -4,7 +4,7 @@ import { faCircleXmark, faSpinner, faMagnifyingGlass } from '@fortawesome/free-s
 import classNames from 'classnames/bind';
 import HeadlessTippy from '@tippyjs/react/headless';
 
-import * as searchServices from '~/apiServices/searchServices';
+import * as searchServices from '~/Services/searchService';
 import { useDebounce } from '~/hooks';
 import style from './Search.modue.scss';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
