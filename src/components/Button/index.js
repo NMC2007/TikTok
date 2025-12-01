@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 
@@ -9,17 +10,17 @@ function Button({
     children,
 
     // ẩn nút
-    disabled,
+    disabled = false,
 
     // kiểu nút
-    primary,
-    outline,
-    rounded,
-    text,
+    primary = false,
+    outline = false,
+    rounded = false,
+    text = false,
 
     // kích thước nút
-    small,
-    large,
+    small = false,
+    large = false,
 
     // định dạng nút
     onClick,
@@ -87,5 +88,28 @@ function Button({
         </Comp>
     );
 }
+
+Button.propTypes = {
+    children: PropTypes.node.isRequired,
+
+    disabled: PropTypes.bool,
+
+    primary: PropTypes.bool,
+    outline: PropTypes.bool,
+    rounded: PropTypes.bool,
+    text: PropTypes.bool,
+
+    small: PropTypes.bool,
+    large: PropTypes.bool,
+
+    onClick: PropTypes.func,
+    to: PropTypes.string,
+    href: PropTypes.string,
+
+    leftIcon: PropTypes.node,
+    rightIcon: PropTypes.node,
+
+    className: PropTypes.string,
+};
 
 export default Button;
