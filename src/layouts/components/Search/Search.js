@@ -23,11 +23,11 @@ function Search() {
      * là value của thanh search và thời gian delay
      * trong trường hợp ở dưới này thì người dùng gõ
      * sau 500ms thì value của thanh search mới được cập
-     * nhật sang biến debounce ta dùng debounce làm
+     * nhật sang biến debounceValue ta dùng debounceValue làm
      * init value cho useEffect để tránh người dùng gõ
      * liên tục làm gửi nhiều request api
      */
-    const debounce = useDebounce(searchContent, 500);
+    const debounceValue = useDebounce(searchContent, 500);
 
     const inputRef = useRef();
 
@@ -38,7 +38,7 @@ function Search() {
          * trị tức khi người dùng nhập dữ liệu vào thì mới call
          * nên kiểm tra nếu searchContent là cuỗi rỗng thì return luôn
          */
-        if (!debounce.trim()) {
+        if (!debounceValue.trim()) {
             setSearchResult([]);
             return;
         }
@@ -46,13 +46,13 @@ function Search() {
         const fetchAPI = async () => {
             setLoading(true);
 
-            const result = await searchServices.search(debounce);
+            const result = await searchServices.search(debounceValue);
             setSearchResult(result);
 
             setLoading(false);
         };
         fetchAPI();
-    }, [debounce]);
+    }, [debounceValue]);
 
     const handleHideResult = () => {
         setShowResult(false);
@@ -76,7 +76,10 @@ function Search() {
                     <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                         <PopperWrapper>
                             <h4 className={cx('search-title')}>Accounts</h4>
-
+                            {/* tách thằng map này sang 1 file mới
+                            nếu có dữ liệu thì truyền dữ liệu bên đó sau map bên đó luôn
+                            áp dụng react memo bên đó để nếu searchResult không thay đổi
+                            thì không map lại làm ảnh hưởng hiệu năng */}
                             {searchResult &&
                                 searchResult.map((Result) => {
                                     return <AccountsItem key={Result.id} data={Result} />;

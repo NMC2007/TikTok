@@ -37,7 +37,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFun
         });
     };
 
-    const HandleBackDefaultMenu = () => {
+    const HandleResetMenu = () => {
         setHistory((prev) => prev.slice(0, 1));
     };
 
@@ -60,7 +60,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFun
                     </PopperWrapper>
                 </div>
             )}
-            onHide={HandleBackDefaultMenu}
+            onHide={HandleResetMenu}
         >
             {children}
         </Tippy>
