@@ -10,7 +10,7 @@ import Header from '~/layouts/components/Header';
  * file này chỉ ex ra layout chính
  * những trang khác ko có layout được note bên routers
  */
-import Sidebar from './Sidebar';
+import Sidebar from '../components/Sidebar';
 
 const cx = classNames.bind(style);
 
