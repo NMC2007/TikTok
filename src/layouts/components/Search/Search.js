@@ -76,10 +76,6 @@ function Search() {
                     <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                         <PopperWrapper>
                             <h4 className={cx('search-title')}>Accounts</h4>
-                            {/* tách thằng map này sang 1 file mới
-                            nếu có dữ liệu thì truyền dữ liệu bên đó sau map bên đó luôn
-                            áp dụng react memo bên đó để nếu searchResult không thay đổi
-                            thì không map lại làm ảnh hưởng hiệu năng */}
                             {searchResult &&
                                 searchResult.map((Result) => {
                                     return <AccountsItem key={Result.id} data={Result} />;
