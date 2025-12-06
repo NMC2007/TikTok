@@ -7,10 +7,11 @@ import {
     HomeIcon,
     UserGroupIcon,
     LiveIcon,
-    HomeActiveIcon,
-    UserGroupActiveIcon,
-    LiveActiveIcon,
+    // HomeActiveIcon,
+    // UserGroupActiveIcon,
+    // LiveActiveIcon,
 } from '~/components/Icon';
+import SidebarAccounts from '~/components/AccoutSidebar/SidebarAccounts';
 
 const cx = classNames.bind(style);
 
@@ -18,15 +19,12 @@ function Sidebar() {
     return (
         <aside className={cx('wrapper')}>
             <Menu>
-                <MenuItem title="Home" to={config.routes.home} icon={<HomeIcon />} activeIcon={<HomeActiveIcon />} />
-                <MenuItem
-                    title="Following"
-                    to={config.routes.following}
-                    icon={<UserGroupIcon />}
-                    activeIcon={<UserGroupActiveIcon />}
-                />
-                <MenuItem title="Live" to={config.routes.live} icon={<LiveIcon />} activeIcon={<LiveActiveIcon />} />
+                <MenuItem title="Home" to={config.routes.home} icon={<HomeIcon />} />
+                <MenuItem title="Following" to={config.routes.following} icon={<UserGroupIcon />} />
+                <MenuItem title="Live" to={config.routes.live} icon={<LiveIcon />} />
             </Menu>
+
+            <SidebarAccounts Label="Sunggestedc accounts" />
         </aside>
     );
 }
