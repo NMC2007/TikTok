@@ -15,6 +15,8 @@ function SidebarAccounts({ Label }) {
             <AccountsItem />
             <AccountsItem />
             <AccountsItem />
+
+            <p className={cx('more-btn')}>See all</p>
         </div>
     );
 }

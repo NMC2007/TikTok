@@ -1,13 +1,15 @@
 @import 'normalize.css';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 :root {
-    --primary: #fe2c55;
+    --primary: #ff3b5c;
 
     // DefaultLayout
     --default-layout-header-height: 60px;
     --default-layout-width: 1150px;
     --default-layout-horizontal-spacer: 24px;
     --default-text-color: #fff;
+    --white-text-color: #e9e9e9;
+    --check-icon-color: #20d5ec;
     --default-backGrount: #000000;
 }
 

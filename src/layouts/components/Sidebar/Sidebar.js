@@ -25,6 +25,7 @@ function Sidebar() {
             </Menu>
 
             <SidebarAccounts Label="Sunggestedc accounts" />
+            <SidebarAccounts Label="Following accounts" />
         </aside>
     );
 }
