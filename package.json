@@ -17,9 +17,9 @@
         "customize-cra": "^1.0.0",
         "normalize.css": "^8.0.1",
         "prop-types": "^15.8.1",
-        "react": "^19.2.0",
+        "react": "^19.2.1",
         "react-app-rewired": "^2.2.1",
-        "react-dom": "^19.2.0",
+        "react-dom": "^19.2.1",
         "react-router-dom": "^7.9.5",
         "react-scripts": "5.0.1",
         "web-vitals": "^2.1.4"
