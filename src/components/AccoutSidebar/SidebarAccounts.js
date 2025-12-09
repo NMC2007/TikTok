@@ -2,19 +2,16 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
 import style from './SidebarAccounts.module.scss';
-import AccountsItem from './AccountsItem';
+// import AccountsItem from './AccountsItem';
 
 const cx = classNames.bind(style);
 
-function SidebarAccounts({ Label }) {
+function SidebarAccounts({ children, Label }) {
     return (
         <div className={cx('wrapper')}>
             <p className={cx('label')}>{Label}</p>
 
-            <AccountsItem />
-            <AccountsItem />
-            <AccountsItem />
-            <AccountsItem />
+            {children}
 
             <p className={cx('more-btn')}>See all</p>
         </div>
@@ -22,6 +19,7 @@ function SidebarAccounts({ Label }) {
 }
 
 SidebarAccounts.propTypes = {
+    children: PropTypes.node,
     label: PropTypes.string.isRequired,
 };
 
